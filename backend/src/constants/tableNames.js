@@ -5,4 +5,6 @@ module.exports = {
   state: 'state',
   shape: 'shape',
   location: 'location',  
+  address: 'address',
+  manufacturer: 'manufacturer', 
 };
