@@ -29,7 +29,8 @@ const references = (table: any, tableName: any) => {
     .integer(`${tableName}_id`)
     .unsigned()
     .references('id')
-    .inTable(tableName);
+    .inTable(tableName)
+    .onDelete('cascade');
 }
 
 /**
