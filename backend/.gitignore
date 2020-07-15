@@ -1,2 +1,3 @@
 node_modules
-src/database/migrations/database.sqlite
+
+*.sqlite

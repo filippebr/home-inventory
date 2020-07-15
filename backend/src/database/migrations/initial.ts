@@ -60,18 +60,6 @@ export async function up(knex: typeof Knex) {
     addDefaultColumns(table);
   });
 
-  // let address = knex.schema.createTable(tableNames.address, (table: any) => {
-  //   table.increments().notNullable();
-  //   table.string('street_address_1', 50).notNullable();
-  //   table.string('street_address_2', 50);
-  //   table.string('city', 50).notNullable();
-  //   table.string('zipcode', 15).notNullable();
-  //   table.float('latitude').notNullable();
-  //   table.float('longitude').notNullable();
-  //   references(table, 'state');
-  //   references(table, 'country');
-  // });
-
   await Promise.all([
     user,
     item_type,
