@@ -90,6 +90,8 @@ export async function up(knex: typeof Knex) {
     email(table, 'email');
     references(table, 'address'); 
   });
+
+  // TODO: create the item table... cause that what its all about 
 }
 
 export async function down(knex: typeof Knex) {
