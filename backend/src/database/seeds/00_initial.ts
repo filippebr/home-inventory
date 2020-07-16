@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 
 const tableNames = require('../../constants/tableNames');
 const orderedTableNames = require('../../constants/orderedTableNames');
+const countries = require('../../constants/countries');
 
 /**
  * @param {Knex} knex
@@ -28,11 +29,17 @@ export async function seed(knex: Knex): Promise<void> {
 
   const [createdUser] = await knex(tableNames.user)
     .insert(user)
-    .returning('*');
-
-  knex(tableNames.user).insert
+    .returning('*');  
   
   console.log('User created:', {
     password,
   }, createdUser);
+
+  await knex(tableNames.country)
+    .insert(countries);
+
+  await knex(tableNames.state)
+    .insert([{
+      name: 'CO',
+    }]);
 };
