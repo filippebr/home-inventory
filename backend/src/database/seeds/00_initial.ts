@@ -22,7 +22,7 @@ export async function seed(knex: Knex): Promise<void> {
   const password = crypto.randomBytes(15).toString('hex');
 
   const user = {
-    email: 'filippe@email.com',
+    email: 'something@email.com',
     name: 'MF',
     password: await bcrypt.hash(password, 12),
   };
