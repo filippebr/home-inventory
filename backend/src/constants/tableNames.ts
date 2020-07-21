@@ -1,4 +1,4 @@
-module.exports = {
+const tableNames = {
   user: 'user',
   country: 'country',
   item_type: 'item_type',
@@ -8,3 +8,5 @@ module.exports = {
   address: 'address',
   manufacturer: 'manufacturer', 
 };
+
+export default tableNames;

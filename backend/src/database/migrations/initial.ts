@@ -1,42 +1,27 @@
-// import Knex from 'knex';
-const Knex = require('knex');
+// const Knex = require('knex');
+import Knex from 'knex';
 
-const tableNames = require('../../constants/tableNames');  
-
-const addDefaultColumns = (table: any) => {
-  table.timestamps(false, true);
-  table.datetime('deleted_at');
-}
-
-const createNameTable = (knex: typeof Knex, table_name: any) => {
-  return knex.schema.createTable(table_name, (table: any) => {
-    table.increments().notNullable();
-    table.string('name').notNullable().unique();
-    addDefaultColumns(table);
-  });
-}
-
-const url = (table: any, columnName: any) => {
-  table.string(columnName, 2000);
-}
-
-const email = (table: any, columnName: any) => {
-  return table.string(columnName, 254);
-}
-
-const references = (table: any, tableName: any) => {
-  table
-    .integer(`${tableName}_id`)
-    .unsigned()
-    .references('id')
-    .inTable(tableName)
-    .onDelete('cascade');
-}
+import tableNames from '../../constants/tableNames';
+// const tableNames = require('../../constants/tableNames'); 
+import {
+  addDefaultColumns,
+  createNameTable,
+  url,
+  email,
+  references
+} from '../../../src/lib/tableUtils';
+// const { 
+//   addDefaultColumns, 
+//   createNameTable, 
+//   url, 
+//   email, 
+//   references 
+// } = require('../../src/lib/tableUtils');
 
 /**
  * @param {Knex} knex
  */
-export async function up(knex: typeof Knex) {
+export async function up(knex: Knex) {
   
   let user = knex.schema.createTable(tableNames.user, (table: any) => {
     table.increments().notNullable();
@@ -94,7 +79,7 @@ export async function up(knex: typeof Knex) {
   // TODO: create the item table... cause that what its all about 
 }
 
-export async function down(knex: typeof Knex) {
+export async function down(knex: Knex) {
   await Promise.all([
     tableNames.manufacturer,
     tableNames.address,
