@@ -18,9 +18,6 @@ import {
 //   references 
 // } = require('../../src/lib/tableUtils');
 
-/**
- * @param {Knex} knex
- */
 export async function up(knex: Knex) {
   
   let user = knex.schema.createTable(tableNames.user, (table: any) => {

@@ -7,6 +7,7 @@ const tableNames = {
   location: 'location',  
   address: 'address',
   manufacturer: 'manufacturer', 
+  size: 'size',
 };
 
 export default tableNames;
