@@ -51,6 +51,17 @@ export async function up(knex: Knex) {
     location,
   ]);  
 
+  // Insert a row called code to the state table
+  await knex.schema.table(tableNames.state, (table) => {
+    table.string('code');
+    references(table, tableNames.country);
+  });
+
+  // Insert a row called code to the country table
+  await knex.schema.table(tableNames.country, (table) => {
+    table.string('code');
+  });
+
   await knex.schema.createTable(tableNames.address, (table: any) => {
     table.increments().notNullable();
     table.string('street_address_1', 50).notNullable();
@@ -60,7 +71,7 @@ export async function up(knex: Knex) {
     table.float('latitude').notNullable();
     table.float('longitude').notNullable();
     references(table, 'state');
-    references(table, 'country');
+    // references(table, 'country');
   });
 
   await knex.schema.createTable(tableNames.manufacturer, (table: any) => {

@@ -11,18 +11,18 @@ import {
 } from '../../../src/lib/tableUtils';
 
 export async function up(knex: Knex): Promise<void> {
-  await knex.schema.table(tableNames.address, (table) => {
-    table.dropColumn('country_id');
-  });
+  // await knex.schema.table(tableNames.address, (table) => {
+  //   table.dropColumn('country_id');
+  // });
 
-  await knex.schema.table(tableNames.state, (table) => {
-    table.string('code');
-    references(table, tableNames.country);
-  });
+  // await knex.schema.table(tableNames.state, (table) => {
+  //   table.string('code');
+  //   references(table, tableNames.country);
+  // });
 
-  await knex.schema.table(tableNames.country, (table) => {
-    table.string('code');
-  });
+  // await knex.schema.table(tableNames.country, (table) => {
+  //   table.string('code');
+  // });
 
   await knex.schema.createTable(tableNames.size, (table) => {
     table.increments();
@@ -37,13 +37,9 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.table(tableNames.address, (table) => {
-    references(table, tableNames.country);
-  });
-
-  await knex.schema.table(tableNames.state, (table) => {
-    table.dropColumn('country_id');
-  });
+  // await knex.schema.table(tableNames.address, (table) => {
+  //   references(table, tableNames.country);
+  // });
 
   await knex.schema.dropTable(tableNames.size);
 }

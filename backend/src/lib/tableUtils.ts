@@ -28,7 +28,7 @@ export const references = (table: any, tableName: any) => {
     .references('id')
     .inTable(tableName)
     .onDelete('cascade');
-  // TODO: should this be not nullable?
+  
 }
 
 // module.exports = {
