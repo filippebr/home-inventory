@@ -18,7 +18,7 @@ import {
 //   references 
 // } = require('../../src/lib/tableUtils');
 
-export async function up(knex: Knex) {
+export async function up(knex: Knex): Promise<void> {
   
   let user = knex.schema.createTable(tableNames.user, (table: any) => {
     table.increments().notNullable();
@@ -31,7 +31,7 @@ export async function up(knex: Knex) {
 
   let country = createNameTable(knex, tableNames.country);
   let item_type = createNameTable(knex, tableNames.item_type);
-  let state = createNameTable(knex, tableNames.state);
+  // let state = createNameTable(knex, tableNames.state); //→ fix here
   let shape = createNameTable(knex, tableNames.shape);
 
   let location = knex.schema.createTable(tableNames.location, (table: any) => {
@@ -46,15 +46,23 @@ export async function up(knex: Knex) {
     user,
     item_type,
     country,
-    state,
+    // state,
     shape,
     location,
   ]);  
 
-  // Insert a row called code to the state table
-  await knex.schema.table(tableNames.state, (table) => {
+  // Insert a row called code to the state table 
+  // await knex.schema.table(tableNames.state, (table) => {
+  //   table.string('code');
+  //   references(table, tableNames.country, true); // → fix here
+  // });
+
+  await knex.schema.createTable(tableNames.state, (table: any) => {
+    table.increments().notNullable();
+    table.string('name').notNullable().unique();
     table.string('code');
     references(table, tableNames.country);
+    addDefaultColumns(table);
   });
 
   // Insert a row called code to the country table
@@ -87,7 +95,7 @@ export async function up(knex: Knex) {
   // TODO: create the item table... cause that what its all about 
 }
 
-export async function down(knex: Knex) {
+export async function down(knex: Knex): Promise<void> {
   await Promise.all([
     tableNames.manufacturer,
     tableNames.address,

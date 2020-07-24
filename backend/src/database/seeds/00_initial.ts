@@ -6,9 +6,6 @@ const tableNames = require('../../constants/tableNames');
 const orderedTableNames = require('../../constants/orderedTableNames');
 const countries = require('../../constants/countries');
 
-/**
- * @param {Knex} knex
- */
 export async function seed(knex: Knex): Promise<void> {
   // Clean the data inside the tables
   await orderedTableNames
