@@ -4,11 +4,12 @@ const tableNames = {
   item_type: 'item_type',
   state: 'state',
   shape: 'shape',
-  location: 'location',  
+  inventory_location: 'inventory_location',  
   address: 'address',
-  manufacturer: 'manufacturer', 
+  company: 'company', 
   size: 'size',
   item: 'item',
+  item_info: 'item_info',
 };
 
 export default tableNames;

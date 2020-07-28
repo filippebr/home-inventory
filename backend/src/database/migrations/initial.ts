@@ -34,7 +34,7 @@ export async function up(knex: Knex): Promise<void> {
   // let state = createNameTable(knex, tableNames.state); //→ fix here
   let shape = createNameTable(knex, tableNames.shape);
 
-  let location = knex.schema.createTable(tableNames.location, (table: any) => {
+  let inventory_location = knex.schema.createTable(tableNames.inventory_location, (table: any) => {
     table.increments().notNullable();
     table.string('name').notNullable().unique();
     table.string('description', 1000);  
@@ -48,7 +48,7 @@ export async function up(knex: Knex): Promise<void> {
     country,
     // state,
     shape,
-    location,
+    inventory_location,
   ]);  
 
   // Insert a row called code to the state table 
@@ -82,7 +82,7 @@ export async function up(knex: Knex): Promise<void> {
     // references(table, 'country');
   });
 
-  await knex.schema.createTable(tableNames.manufacturer, (table: any) => {
+  await knex.schema.createTable(tableNames.company, (table: any) => {
     table.increments().notNullable();
     table.string('name').notNullable();
     url(table, 'logo_url');
@@ -91,19 +91,17 @@ export async function up(knex: Knex): Promise<void> {
     email(table, 'email');
     references(table, 'address'); 
   });
-
-  // TODO: create the item table... cause that what its all about 
 }
 
 export async function down(knex: Knex): Promise<void> {
   await Promise.all([
-    tableNames.manufacturer,
+    tableNames.company,
     tableNames.address,
     tableNames.user,
     tableNames.item_type,
     tableNames.country,
     tableNames.state,
     tableNames.shape,
-    tableNames.location,
+    tableNames.inventory_location,
   ].map((tableName) => knex.schema.dropTable(tableName)));
 };

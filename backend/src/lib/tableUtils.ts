@@ -21,9 +21,9 @@ export const email = (table: any, columnName: any) => {
   return table.string(columnName, 254);
 }
 // → fix here
-export const references = (table: any, tableName: any, notNullable: any = true) => {
+export const references = (table: any, tableName: any, notNullable: any = true, columnName: any = '') => {
   const definition = table
-    .integer(`${tableName}_id`)
+    .integer(`${columnName || tableName}_id`)
     .unsigned()
     .references('id')
     .inTable(tableName)
@@ -32,6 +32,8 @@ export const references = (table: any, tableName: any, notNullable: any = true) 
   if ( notNullable ) {
     definition.notNullable();
   }
+
+  return definition;
 }
 
 // module.exports = {
