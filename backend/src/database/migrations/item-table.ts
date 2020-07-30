@@ -44,8 +44,12 @@ export async function up(knex: Knex): Promise<void> {
     table.dateTime('expiration_date');
     references(table, tableNames.company, false, 'retailer');
     table.dateTime('last_used');
-    table.float('price').notNullable().defaultTo(0);
+    table.float('purchase_price').notNullable().defaultTo(0);
+    table.float('msrp').notNullable().defaultTo(0);
+    references(table, tableNames.inventory_location);
   });
+
+  // await knex.schema.createTable(tableNames.item)
 }
 
 export async function down(knex: Knex): Promise<void> {
