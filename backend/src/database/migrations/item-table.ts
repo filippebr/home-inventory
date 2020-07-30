@@ -47,9 +47,15 @@ export async function up(knex: Knex): Promise<void> {
     table.float('purchase_price').notNullable().defaultTo(0);
     table.float('msrp').notNullable().defaultTo(0);
     references(table, tableNames.inventory_location);
+    addDefaultColumns(table);
   });
 
-  // await knex.schema.createTable(tableNames.item)
+  await knex.schema.createTable(tableNames.item_image, (table) => {
+    table.increments();
+    references(table, tableNames.item);
+    url(table, 'image_url');
+    addDefaultColumns(table);
+  });
 }
 
 export async function down(knex: Knex): Promise<void> {
