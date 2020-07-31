@@ -56,9 +56,24 @@ export async function up(knex: Knex): Promise<void> {
     url(table, 'image_url');
     addDefaultColumns(table);
   });
+
+  await knex.schema.createTable(tableNames.related_item, (table) => {
+    table.increments();
+    references(table, tableNames.item);
+    references(table, tableNames.item, false, 'related_item');
+    addDefaultColumns(table);
+  })
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.dropTable(tableNames.size);
+  await Promise.all([
+    tableNames.size,
+    tableNames.related_item,
+    tableNames.item,
+    tableNames.item_info,
+    tableNames.item_image,
+    tableNames.related_item,
+  ].reverse()
+    .map(name => knex.schema.dropTableIfExists(name)));
 }
 

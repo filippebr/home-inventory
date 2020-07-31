@@ -103,5 +103,5 @@ export async function down(knex: Knex): Promise<void> {
     tableNames.state,
     tableNames.shape,
     tableNames.inventory_location,
-  ].map((tableName) => knex.schema.dropTable(tableName)));
+  ].map((tableName) => knex.schema.dropTableIfExists(tableName)));
 };

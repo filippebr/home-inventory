@@ -4,7 +4,7 @@ export const addDefaultColumns = (table: any) => {
   table.timestamps(false, true);
   table.datetime('deleted_at');
 }
-// → fix here
+
 export const createNameTable = (knex: Knex, table_name: any) => {
   return knex.schema.createTable(table_name, (table: any) => {
     table.increments().notNullable();
@@ -20,7 +20,7 @@ export const url = (table: any, columnName: any) => {
 export const email = (table: any, columnName: any) => {
   return table.string(columnName, 254);
 }
-// → fix here
+
 export const references = (table: any, tableName: any, notNullable: any = true, columnName: any = '') => {
   const definition = table
     .integer(`${columnName || tableName}_id`)
@@ -35,11 +35,3 @@ export const references = (table: any, tableName: any, notNullable: any = true, 
 
   return definition;
 }
-
-// module.exports = {
-//   addDefaultColumns,
-//   createNameTable,
-//   url,
-//   email,
-//   references,
-// };
