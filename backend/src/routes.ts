@@ -1,9 +1,18 @@
 import express from 'express';
+import morgan from 'morgan';
+import compression from 'compression';
+import helmet from 'helmet';
 
-const routes = express.Router();
+const app = express();
 
-routes.get('/', (req, res) => {
-  return res.json({ message: 'Hello World' });
+app.use(morgan('tiny'));
+app.use(compression());
+app.use(helmet());
+
+app.get('/', (req, res) => {
+  res.json({
+    message: '🏡📦🥫 Home Inventory API 🥫📦🏡'
+  });
 });
 
 export default routes;
