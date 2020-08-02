@@ -3,13 +3,13 @@ import morgan from 'morgan';
 import compression from 'compression';
 import helmet from 'helmet';
 
-const app = express();
+const routes = express();
 
-app.use(morgan('tiny'));
-app.use(compression());
-app.use(helmet());
+routes.use(morgan('tiny'));
+routes.use(compression());
+routes.use(helmet());
 
-app.get('/', (req, res) => {
+routes.get('/', (req, res) => {
   res.json({
     message: '🏡📦🥫 Home Inventory API 🥫📦🏡'
   });
