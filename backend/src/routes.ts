@@ -1,18 +1,13 @@
 import express from 'express';
-import morgan from 'morgan';
-import compression from 'compression';
-import helmet from 'helmet';
 
-const routes = express();
-
-routes.use(morgan('tiny'));
-routes.use(compression());
-routes.use(helmet());
+const routes = express.Router();
 
 routes.get('/', (req, res) => {
   res.json({
-    message: '🏡📦🥫 Home Inventory API 🥫📦🏡'
+    message: '🏡🥫 Home Inventory API 🥫📦🏡'
   });
 });
+
+// TODO: add error handling
 
 export default routes;

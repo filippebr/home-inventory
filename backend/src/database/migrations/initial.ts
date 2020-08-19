@@ -1,8 +1,7 @@
-// const Knex = require('knex');
 import Knex from 'knex';
 
 import tableNames from '../../constants/tableNames';
-// const tableNames = require('../../constants/tableNames'); 
+
 import {
   addDefaultColumns,
   createNameTable,
@@ -10,13 +9,6 @@ import {
   email,
   references
 } from '../../../src/lib/tableUtils';
-// const { 
-//   addDefaultColumns, 
-//   createNameTable, 
-//   url, 
-//   email, 
-//   references 
-// } = require('../../src/lib/tableUtils');
 
 export async function up(knex: Knex): Promise<void> {
   
@@ -31,7 +23,6 @@ export async function up(knex: Knex): Promise<void> {
 
   let country = createNameTable(knex, tableNames.country);
   let item_type = createNameTable(knex, tableNames.item_type);
-  // let state = createNameTable(knex, tableNames.state); //→ fix here
   let shape = createNameTable(knex, tableNames.shape);
 
   let inventory_location = knex.schema.createTable(tableNames.inventory_location, (table: any) => {
@@ -46,16 +37,9 @@ export async function up(knex: Knex): Promise<void> {
     user,
     item_type,
     country,
-    // state,
     shape,
     inventory_location,
   ]);  
-
-  // Insert a row called code to the state table 
-  // await knex.schema.table(tableNames.state, (table) => {
-  //   table.string('code');
-  //   references(table, tableNames.country, true); // → fix here
-  // });
 
   await knex.schema.createTable(tableNames.state, (table: any) => {
     table.increments().notNullable();
@@ -65,7 +49,6 @@ export async function up(knex: Knex): Promise<void> {
     addDefaultColumns(table);
   });
 
-  // Insert a row called code to the country table
   await knex.schema.table(tableNames.country, (table) => {
     table.string('code');
   });
@@ -79,7 +62,6 @@ export async function up(knex: Knex): Promise<void> {
     table.float('latitude').notNullable();
     table.float('longitude').notNullable();
     references(table, 'state');
-    // references(table, 'country');
   });
 
   await knex.schema.createTable(tableNames.company, (table: any) => {
