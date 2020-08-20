@@ -12,12 +12,12 @@ import {
 
 export async function up(knex: Knex): Promise<void> {
   
-  let user = knex.schema.createTable(tableNames.user, (table: any) => {
+  let user = knex.schema.createTable(tableNames.user, table => {
     table.increments().notNullable();
     email(table, 'email').notNullable().unique();
     table.string('name').notNullable();
     table.string('password', 127).notNullable();
-    table.datetime('last_login');
+    table.dateTime('last_login');
     addDefaultColumns(table);
   });
 
@@ -25,7 +25,7 @@ export async function up(knex: Knex): Promise<void> {
   let item_type = createNameTable(knex, tableNames.item_type);
   let shape = createNameTable(knex, tableNames.shape);
 
-  let inventory_location = knex.schema.createTable(tableNames.inventory_location, (table: any) => {
+  let inventory_location = knex.schema.createTable(tableNames.inventory_location, table => {
     table.increments().notNullable();
     table.string('name').notNullable().unique();
     table.string('description', 1000);  
@@ -41,7 +41,7 @@ export async function up(knex: Knex): Promise<void> {
     inventory_location,
   ]);  
 
-  await knex.schema.createTable(tableNames.state, (table: any) => {
+  await knex.schema.createTable(tableNames.state, table => {
     table.increments().notNullable();
     table.string('name').notNullable().unique();
     table.string('code');
@@ -49,11 +49,11 @@ export async function up(knex: Knex): Promise<void> {
     addDefaultColumns(table);
   });
 
-  await knex.schema.table(tableNames.country, (table) => {
+  await knex.schema.table(tableNames.country, table => {
     table.string('code');
   });
 
-  await knex.schema.createTable(tableNames.address, (table: any) => {
+  await knex.schema.createTable(tableNames.address, table => {
     table.increments().notNullable();
     table.string('street_address_1', 50).notNullable();
     table.string('street_address_2', 50);
@@ -64,7 +64,7 @@ export async function up(knex: Knex): Promise<void> {
     references(table, 'state');
   });
 
-  await knex.schema.createTable(tableNames.company, (table: any) => {
+  await knex.schema.createTable(tableNames.company, table => {
     table.increments().notNullable();
     table.string('name').notNullable();
     url(table, 'logo_url');

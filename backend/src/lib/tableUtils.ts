@@ -5,7 +5,7 @@ export const addDefaultColumns = (table: any) => {
   table.datetime('deleted_at');
 }
 
-export const createNameTable = (knex: Knex, table_name: any) => {
+export const createNameTable = (knex: Knex, table_name: string) => {
   return knex.schema.createTable(table_name, (table: any) => {
     table.increments().notNullable();
     table.string('name').notNullable().unique();
@@ -13,15 +13,15 @@ export const createNameTable = (knex: Knex, table_name: any) => {
   });
 }
 
-export const url = (table: any, columnName: any) => {
+export const url = (table: any, columnName: string) => {
   table.string(columnName, 2000);
 }
 
-export const email = (table: any, columnName: any) => {
+export const email = (table: any, columnName: string) => {
   return table.string(columnName, 254);
 }
 
-export const references = (table: any, tableName: any, notNullable: any = true, columnName: any = '') => {
+export const references = (table: any, tableName: string, notNullable: any = true, columnName: string = '') => {
   const definition = table
     .integer(`${columnName || tableName}_id`)
     .unsigned()
