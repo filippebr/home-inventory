@@ -12,6 +12,7 @@ app.use(morgan('tiny'));
 app.use(compression());
 app.use(helmet());
 app.use(express.json());
+
 app.use(routes);
 
 // TODO: add body parser

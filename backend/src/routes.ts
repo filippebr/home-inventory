@@ -8,6 +8,4 @@ routes.get('/', (req, res) => {
   });
 });
 
-// TODO: add error handling
-
 export default routes;
