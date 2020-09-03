@@ -4,11 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
     "knex:seed": "knex --knexfile knexfile.ts seed:run",
     "knex:rollback": "knex --knexfile knexfile.ts migrate:rollback",
-    "knex:make": "knex --knexfile knexfile.ts migrate:make"
+    "knex:make": "knex --knexfile knexfile.ts migrate:make",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
