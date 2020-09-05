@@ -8,5 +8,5 @@ module.exports = [
   tableNames.country,
   tableNames.shape,
   tableNames.location,
-  tableNames.user,
+  tableNames.user
 ];

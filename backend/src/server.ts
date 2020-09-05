@@ -4,7 +4,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 import routes from './routes';
 
-import {notFound, errorHandler} from './middlewares';
+import { notFound, errorHandler } from './middlewares';
 
 const app = express();
 

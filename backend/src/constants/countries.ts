@@ -1,13 +1,13 @@
 module.exports = [{
-  name: 'US',
+  name: 'US'
 }, {
-  name: 'NO',
+  name: 'NO'
 }, {
-  name: 'BE',
+  name: 'BE'
 }, {
-  name: 'RO',
+  name: 'RO'
 }, {
-  name: 'DE',
+  name: 'DE'
 }, {
-  name: 'UK',
+  name: 'UK'
 }];
