@@ -9,7 +9,7 @@
     "knex:seed": "knex --knexfile knexfile.ts seed:run",
     "knex:rollback": "knex --knexfile knexfile.ts migrate:rollback",
     "knex:make": "knex --knexfile knexfile.ts migrate:make",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
@@ -39,6 +39,7 @@
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2",
+    "ts-jest": "^26.3.0",
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.51",
     "tsconfig-paths": "^3.9.0",

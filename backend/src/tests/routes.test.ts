@@ -1,10 +1,9 @@
-const supertest = require('supertest');
+const request = require('supertest');
+const server = require('../server');
 
-const app = require('./app');
-
-describe('App', () => {
+describe('Route', () => {
   it('should respond with a message', async () => {
-    const response = await supertest(app)
+    const response = await request(server)
       .get('/')
       .expect('Content-Type', /json/)
       .expect(200);
