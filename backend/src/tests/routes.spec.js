@@ -1,13 +1,28 @@
-const request = require('supertest');
+const supertest = require('supertest');
+const http = require('http');
 const app = require('../app');
 
 describe('Route', () => {
-  it('should respond with a message', async () => {
-    const response = await request(app)
-      .get('/')
-      .expect('Content-Type', /json/)
-      .expect(200);
+  let server;
+  let request;
 
-    expect(response.body.message).toEqual('🏡📦🥫 Home Inventory API 🥫📦🏡');
+  beforeAll((done) => {
+    server = http.createServer(app);
+    server.listen(done);
+    request = supertest(server);
+  });
+
+  afterAll((done) => {
+    server.close(done);
+  });
+
+  it('Returns 200', async () => {
+    const response = await request.get('/');
+    expect(response.status).toBe(200);
+  });
+
+  it('Returns Home Invetory API', async () => {
+    const response = await request.get('/');
+    expect(response.body.message).toBe('🏡📦🥫 Home Inventory API 🥫📦🏡');
   });
 });
