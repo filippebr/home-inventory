@@ -1,6 +1,6 @@
-const supertest = require('supertest');
-const http = require('http');
-const app = require('../app');
+import supertest from 'supertest';
+import http from 'http';
+import app from '../server';
 
 describe('Route', () => {
   let server;
@@ -21,7 +21,7 @@ describe('Route', () => {
     expect(response.status).toBe(200);
   });
 
-  it('Returns Home Invetory API', async () => {
+  it('Returns Home Inventory API', async () => {
     const response = await request.get('/');
     expect(response.body.message).toBe('🏡📦🥫 Home Inventory API 🥫📦🏡');
   });

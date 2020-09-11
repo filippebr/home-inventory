@@ -1,11 +1,10 @@
-const express = require('express');
-const morgan = require('morgan');
-const compression = require('compression');
-const helmet = require('helmet');
+import express from 'express';
+import morgan from 'morgan';
+import compression from 'compression';
+import helmet from 'helmet';
+import routes from './routes';
 
-// import routes from './routes';
-
-// import { notFound, errorHandler } from './middlewares';
+import { notFound, errorHandler } from './middlewares';
 
 const app = express();
 
@@ -14,19 +13,11 @@ app.use(compression());
 app.use(helmet());
 app.use(express.json());
 
-// app.use(routes);
-
-// const routes = express.Router();
-
-app.get('/', (req, res) => {
-  res.json({
-    message: '🏡📦🥫 Home Inventory API 🥫📦🏡'
-  });
-});
+app.use(routes);
 
 // TODO: add body parser
 
-// app.use(notFound);
-// app.use(errorHandler);
+app.use(notFound);
+app.use(errorHandler);
 
-module.exports = app;
+export default app;
