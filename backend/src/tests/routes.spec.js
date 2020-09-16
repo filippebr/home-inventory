@@ -1,6 +1,10 @@
+// remove this supertest and try to use another module do make the jest tests
 import supertest from 'supertest';
 import http from 'http';
 import app from '../server';
+// const supertest = require('supertest');
+// const http = require('http');
+// const app = require('../app');
 
 describe('Route', () => {
   let server;
