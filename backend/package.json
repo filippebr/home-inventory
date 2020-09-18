@@ -11,7 +11,7 @@
     "knex:seed": "knex --knexfile knexfile.ts seed:run",
     "knex:rollback": "knex --knexfile knexfile.ts migrate:rollback",
     "knex:make": "knex --knexfile knexfile.ts migrate:make",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --forceExit --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
