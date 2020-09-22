@@ -4,11 +4,6 @@ import compression from 'compression';
 import helmet from 'helmet';
 import indexRouter from './routes';
 
-// const morgan = require('morgan');
-// const compression = require('compression');
-// const helmet = require('helmet');
-
-// const { notFound, errorHandler } = require('./middlewares');
 import { notFound, errorHandler } from './middlewares';
 
 const app = express();
