@@ -2,7 +2,7 @@ import http from 'http';
 import supertest from 'supertest';
 import app from '../server';
 
-describe('Route', () => {
+describe('GET /', () => {
   let server: http.Server;
   let request: any;
 
@@ -16,13 +16,12 @@ describe('Route', () => {
     server.close(done);
   });
 
-  it('Returns 200', async () => {
-    const response = await request.get('/');
-    expect(response.status).toBe(200);
-  });
+  it('should respond with a message', async () => {
+    const response = await request
+      .get('/')
+      .expect('Content-Type', /json/)
+      .expect(200);
 
-  it('Returns Home Inventory API', async () => {
-    const response = await request.get('/');
     expect(response.body.message).toBe('🏡📦🥫 Home Inventory API 🥫📦🏡');
   });
 });
