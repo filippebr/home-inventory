@@ -1,11 +1,11 @@
 import express from 'express';
 
-const routes = express.Router();
+const router = express.Router();
 
-routes.get('/', (req, res) => {
-  res.json({
+router.get('/', (req, res) => {
+  res.status(200).json({
     message: '🏡📦🥫 Home Inventory API 🥫📦🏡'
   });
 });
 
-export default routes;
+export default router;

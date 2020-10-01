@@ -1,5 +1,5 @@
-import http from 'http';
 import supertest from 'supertest';
+import http from 'http';
 import app from '../server';
 
 describe('GET /', () => {
@@ -9,11 +9,11 @@ describe('GET /', () => {
   beforeAll((done) => {
     server = http.createServer(app);
     server.listen(done);
-    request = supertest(server);
+    request = supertest.agent(server);
   });
 
   afterAll((done) => {
-    server.close(done);
+    return server && server.close(done);
   });
 
   it('should respond with a message', async () => {

@@ -15,7 +15,8 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(indexRouter);
-app.use('api/v1', api);
+
+app.use('/api/v1', api);
 // TODO: add body parser
 
 app.use(notFound);
