@@ -20,7 +20,7 @@ export async function up (knex: Knex): Promise<void> {
     addDefaultColumns(table);
   });
 
-  await knex.schema.createTable(tableNames.item, (table) => {
+  await knex.schema.createTable(tableNames.item, (table:Knex.CreateTableBuilder) => {
     table.increments();
     references(table, tableNames.user);
     table.string('name');
@@ -33,7 +33,7 @@ export async function up (knex: Knex): Promise<void> {
     addDefaultColumns(table);
   });
 
-  await knex.schema.createTable(tableNames.item_info, (table) => {
+  await knex.schema.createTable(tableNames.item_info, (table:Knex.CreateTableBuilder) => {
     table.increments();
     references(table, tableNames.user);
     references(table, tableNames.item);
@@ -47,14 +47,14 @@ export async function up (knex: Knex): Promise<void> {
     addDefaultColumns(table);
   });
 
-  await knex.schema.createTable(tableNames.item_image, (table) => {
+  await knex.schema.createTable(tableNames.item_image, (table:Knex.CreateTableBuilder) => {
     table.increments();
     references(table, tableNames.item);
     url(table, 'image_url');
     addDefaultColumns(table);
   });
 
-  await knex.schema.createTable(tableNames.related_item, (table) => {
+  await knex.schema.createTable(tableNames.related_item, (table:Knex.CreateTableBuilder) => {
     table.increments();
     references(table, tableNames.item);
     references(table, tableNames.item, false, 'related_item');

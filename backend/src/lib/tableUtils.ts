@@ -1,8 +1,8 @@
 import Knex from 'knex';
 
-export const addDefaultColumns = (table: any) => {
+export const addDefaultColumns = (table: Knex.CreateTableBuilder) => {
   table.timestamps(false, true);
-  table.datetime('deleted_at');
+  table.dateTime('deleted_at');
 };
 
 export const createNameTable = (knex: Knex, tableName: string) => {
@@ -13,15 +13,15 @@ export const createNameTable = (knex: Knex, tableName: string) => {
   });
 };
 
-export const url = (table: any, columnName: string) => {
+export const url = (table: Knex.CreateTableBuilder, columnName: string) => {
   table.string(columnName, 2000);
 };
 
-export const email = (table: any, columnName: string) => {
+export const email = (table: Knex.CreateTableBuilder, columnName: string) => {
   return table.string(columnName, 254);
 };
 
-export const references = (table: any, tableName: string, notNullable: any = true, columnName: string = '') => {
+export const references = (table: Knex.CreateTableBuilder, tableName: string, notNullable: any = true, columnName: string = '') => {
   const definition = table
     .integer(`${columnName || tableName}_id`)
     .unsigned()
