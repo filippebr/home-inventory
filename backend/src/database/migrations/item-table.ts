@@ -4,15 +4,12 @@ import tableNames from '../../constants/tableNames';
 
 import {
   addDefaultColumns,
-  createNameTable,
   url,
-  email,
   references
 } from '../../../src/lib/tableUtils';
 
-export async function up(knex: Knex): Promise<void> {
-
-  await knex.schema.createTable(tableNames.size, (table) => {
+export async function up (knex: Knex): Promise<void> {
+  await knex.schema.createTable(tableNames.size, (table: Knex.CreateTableBuilder) => {
     table.increments();
     table.string('name').notNullable();
     table.float('length');
@@ -62,18 +59,17 @@ export async function up(knex: Knex): Promise<void> {
     references(table, tableNames.item);
     references(table, tableNames.item, false, 'related_item');
     addDefaultColumns(table);
-  })
+  });
 }
 
-export async function down(knex: Knex): Promise<void> {
+export async function down (knex: Knex): Promise<void> {
   await Promise.all([
     tableNames.size,
     tableNames.related_item,
     tableNames.item,
     tableNames.item_info,
     tableNames.item_image,
-    tableNames.related_item,
+    tableNames.related_item
   ].reverse()
     .map(name => knex.schema.dropTableIfExists(name)));
 }
-
