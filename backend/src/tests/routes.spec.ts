@@ -1,4 +1,4 @@
-import { server, BASE_URL } from './setup';
+import { server } from './setup';
 // import http from 'http';
 // import app from '../server';
 
