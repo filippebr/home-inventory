@@ -1,4 +1,5 @@
 import { server } from './setup';
+import project from '../constants/project';
 // import http from 'http';
 // import app from '../server';
 
@@ -22,6 +23,7 @@ describe('GET /', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    expect(response.body.message).toBe('🏡📦🥫 Home Inventory API 🥫📦🏡');
+    expect(response.body.message)
+      .toBe(project.message);
   });
 });

@@ -3,9 +3,9 @@ import morgan from 'morgan';
 import compression from 'compression';
 import helmet from 'helmet';
 import indexRouter from './routes';
-import api from './api';
 
 import { notFound, errorHandler } from './middlewares';
+import api from './api';
 
 const app = express();
 
