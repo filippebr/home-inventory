@@ -1,6 +1,7 @@
 import supertest from 'supertest';
 
 import app from '../app';
+import project from '../constants/project';
 
 describe('GET /api/v1', () => {
   it('should respond with a message', async () => {
@@ -9,6 +10,7 @@ describe('GET /api/v1', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    expect(response.body.message).toEqual(' API ');
+    expect(response.body.message)
+      .toEqual(project.message);
   });
 });
