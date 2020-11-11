@@ -1,6 +1,6 @@
 // Code used in the files where you need to communicate with the database.
 // For Example: connection('table').insert({});
-const knex = require('knex');
+import knex from 'Knex';
 
 const knexConfig = require('../../knexfile');
 
@@ -8,4 +8,4 @@ const environment = process.env.NODE_ENV === 'test' ? knexConfig.test : knexConf
 
 const connection = knex(environment);
 
-module.exports = connection;
+export default connection;
