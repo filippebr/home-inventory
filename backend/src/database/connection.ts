@@ -1,12 +1,11 @@
-import knex from 'knex';
-import path from 'path';
+// Code used in the files where you need to communicate with the database.
+// For Example: connection('table').insert({});
+const knex = require('knex');
 
-const connection = knex({
-  client: 'sqlite3',
-  connection: {
-    filename: path.resolve(__dirname, 'database.sqlite')
-  },
-  useNullAsDefault: true
-});
+const knexConfig = require('../../knexfile');
 
-export default connection;
+const environment = process.env.NODE_ENV === 'test' ? knexConfig.test : knexConfig.development;
+
+const connection = knex(environment);
+
+module.exports = connection;
